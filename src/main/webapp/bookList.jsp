@@ -18,11 +18,23 @@
         <tr>
             <th>ジャンル</th>
             <th>タイトル</th>
+            <th>編集</th>
         </tr>
-        <% for(List<String> infoList : allInfoList) { %>
+        <% for(int i = 0; i < allInfoList.size(); i++) { 
+            List<String> infoList = allInfoList.get(i); %>
             <tr>
                 <td><%= infoList.get(0) %></td>
                 <td><%= infoList.get(1) %></td>
+                <td>
+                    <form action="BookEditServlet" method="get" style="display:inline;">
+                        <input type="hidden" name="index" value="<%= i %>">
+                        <input type="submit" value="編集">
+                    </form>
+                    <form action="BookDeleteServlet" method="post" style="display:inline;">
+                        <input type="hidden" name="index" value="<%= i %>">
+                        <input type="submit" value="削除" onclick="return confirm('本当に削除しますか？');">
+                    </form>
+                </td>
             </tr>
         <% } %>
       </table>

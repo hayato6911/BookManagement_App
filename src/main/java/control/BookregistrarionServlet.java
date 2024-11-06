@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/BookregistrarionServlet")
 public class BookregistrarionServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,24 +28,17 @@ public class BookregistrarionServlet extends HttpServlet {
 		String genle = request.getParameter("genle");
 		String title = request.getParameter("title");
 		
-		//Listクラスは可変（数が決まっていない）ため文字列のリストを作成し、infoListに格納。
 		List<String> infoList = new ArrayList<String>();
 		infoList.add(genle);
 		infoList.add(title);
 		
-		// request.getSession()でセッションを取得
-		// getAttribute("allinfoList)でセッションの中から情報を取り出す
-	    List<List<String>> attribute = (List<List<String>>) request.getSession().getAttribute("allInfoList");
-		List<List<String>> allInfoList = attribute;
-		// 初回アクセス時にはallinfoList空だから、真になる。
-		// 初回は空のリスト作成してあげるようにする
-		// 2回目から偽になる
+	    List<List<String>> allInfoList = (List<List<String>>) request.getSession().getAttribute("allInfoList");
+	    
 	    if(allInfoList == null) {
 	        allInfoList = new ArrayList<List<String>>();
 	    }
 	    
-	    // 新しい登録情報を追加
-	    //2回目以降はリストが作成されているから、これで追加していく
+	    //2回目以降は追加
 	    allInfoList.add(infoList);
 	    
 	    // リクエストスコープへのデータ格納

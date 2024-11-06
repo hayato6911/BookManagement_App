@@ -15,10 +15,10 @@
         <input type="submit" value="登録">
     </form>
     <% String message = request.getParameter("message");
-if (message != null) {
-    String decodedMessage = URLDecoder.decode(message, "UTF-8");
-%>
+      if (message != null) {
+        String decodedMessage = URLDecoder.decode(message, "UTF-8");
+    %>
     <p><%= decodedMessage %></p>
-<% } %>
+    <% } %>
 </body>
 </html>
